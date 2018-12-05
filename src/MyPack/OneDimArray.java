@@ -2,7 +2,11 @@ package MyPack;
 
 public interface OneDimArray {
 
-    int getIntervalElementsAmount(int lowLimit, int highLimit);
 
-    void zeroPositiveElements();
+    void checkArrayForReset(double lowLimit, double highLimit);
+
+    int getIntervalElementsAmount();
+
+    double getIntervalElementsSum();
+
 }

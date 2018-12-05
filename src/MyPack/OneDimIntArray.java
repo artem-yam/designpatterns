@@ -6,13 +6,13 @@ public class OneDimIntArray implements OneDimArray {
 
     private int[] dimArray;
     private int intervalElementsAmount = 0;
-    private int intervalElementsSum = 0;
+    private double intervalElementsSum = 0;
 
     public OneDimIntArray(int... args) {
         this.dimArray = args;
     }
 
-    public int getIntervalElementsAmount(int lowLimit, int highLimit) {
+    public void setIntervalElementsAmountAndSum(double lowLimit, double highLimit) {
         this.intervalElementsAmount = 0;
         this.intervalElementsSum = 0;
 
@@ -21,26 +21,39 @@ public class OneDimIntArray implements OneDimArray {
             checkIntervalForElement(lowLimit, highLimit, this.dimArray[i]);
 
         }
+    }
 
-        isAverageValueOverElementsAmount();
-
+    @Override
+    public int getIntervalElementsAmount() {
         return intervalElementsAmount;
     }
 
-    private void checkIntervalForElement(int lowLimit, int highLimit, int element) {
+    @Override
+    public double getIntervalElementsSum() {
+        return intervalElementsSum;
+    }
+
+    public void checkArrayForReset(double lowLimit, double highLimit) {
+        setIntervalElementsAmountAndSum(lowLimit, highLimit);
+
+        ResetIfAverageValueOverElementsAmount();
+    }
+
+
+    private void checkIntervalForElement(double lowLimit, double highLimit, int element) {
         if ((element >= lowLimit) && (element <= highLimit)) {
             intervalElementsAmount++;
             intervalElementsSum += element;
         }
     }
 
-    private void isAverageValueOverElementsAmount() {
+    private void ResetIfAverageValueOverElementsAmount() {
         if ((intervalElementsAmount != 0) && (intervalElementsSum / intervalElementsAmount > intervalElementsAmount)) {
             zeroPositiveElements();
         }
     }
 
-    public void zeroPositiveElements() {
+    private void zeroPositiveElements() {
         for (int i = 0; i < this.dimArray.length; i++) {
             if (this.dimArray[i] > 0) {
                 this.dimArray[i] = 0;
