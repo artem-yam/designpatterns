@@ -29,3 +29,7 @@ public class ArrayReseter {
     }
 
 }
+
+
+//TODO checkArrayForReset переименовать, должен возвращать значение
+//TODO В OneDimIntArray не использовать поля

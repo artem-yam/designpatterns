@@ -12,7 +12,7 @@ public class OneDimIntArray implements OneDimArray {
         this.dimArray = args;
     }
 
-    public void setIntervalElementsAmountAndSum(double lowLimit, double highLimit) {
+    private void setIntervalElementsAmountAndSum(double lowLimit, double highLimit) {
         this.intervalElementsAmount = 0;
         this.intervalElementsSum = 0;
 
