@@ -18,7 +18,7 @@ public class ArrayReseter {
     }
 
 
-    private void handleArray(OneDimArray arrayObject, int lowLimit, int highLimit) {
+    private void handleArray(OneDimArray arrayObject, double lowLimit, double highLimit) {
 
         infoOutput.outputArray(arrayObject, "Origin Array:");
 
