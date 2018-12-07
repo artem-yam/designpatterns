@@ -13,6 +13,8 @@ public class ConsoleInfoOutput implements InfoOutput {
     @Override
     public void outputIntervalInfo(NumericOneDimArray array, double lowIntervalLimit,
                                    double highIntervalLimit) {
+        outputArray(array);
+
         NumericOneDimArray arrayInInterval = array.getArrayOfElements(lowIntervalLimit, highIntervalLimit);
 
         int arrayAmount = arrayInInterval.getLength();

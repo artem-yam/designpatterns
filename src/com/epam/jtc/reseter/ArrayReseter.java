@@ -20,8 +20,6 @@ public class ArrayReseter {
 
     private void handleArray(NumericOneDimArray arrayObject, double lowLimit, double highLimit) {
 
-        infoOutput.outputArray(arrayObject);
-
         infoOutput.outputIntervalInfo(arrayObject, lowLimit, highLimit);
 
         NumericOneDimArray resetedArray = arrayObject.
