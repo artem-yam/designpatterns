@@ -20,14 +20,15 @@ public class ArrayReseter {
 
     private void handleArray(NumericOneDimArray arrayObject, double lowLimit, double highLimit) {
 
-        infoOutput.outputArray(arrayObject, "Origin Array:");
+        // infoOutput.outputArray(arrayObject, "Origin Array:");
+        infoOutput.outputArray(arrayObject, "Origin array: ");
 
-        infoOutput.outputString("Interval: [" + lowLimit + " ; " + highLimit + "] ");
+        infoOutput.outputStrings("Interval: [" + lowLimit + " ; " + highLimit + "] ");
 
         NumericOneDimArray resetedArray = arrayObject.
                 resetArrayPositiveElementsIfAverageInIntervalMoreThanAmount(lowLimit, highLimit);
 
-        infoOutput.outputArray(resetedArray, "Array after transformation:");
+        infoOutput.outputArray(resetedArray, "Array after transformation: ");
 
         //infoOutput.outputArrayInfoAfterIntervalCheck(arrayObject, lowLimit, highLimit);
     }

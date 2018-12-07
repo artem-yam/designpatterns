@@ -3,16 +3,17 @@ package com.epam.jtc.reseter;
 public class ConsoleInfoOutput implements InfoOutput {
 
     @Override
-    public void outputArray(NumericOneDimArray array, String extraInfo) {
-        System.out.println("-----------------------------------");
-        System.out.println(extraInfo);
+    public void outputArray(NumericOneDimArray array, String... extraInfo) {
+        for (String str : extraInfo) {
+            System.out.println(str);
+        }
         System.out.println(array);
-        System.out.println("-----------------------------------");
     }
 
     @Override
-    public void outputString(String stringForOutput) {
-        System.out.println(stringForOutput);
+    public void outputStrings(String... stringsForOutput) {
+        for (String string : stringsForOutput)
+            System.out.println(string);
     }
 
 
@@ -29,8 +30,8 @@ public class ConsoleInfoOutput implements InfoOutput {
         if (arr.getLength() != 0) {
             System.out.println(String.format("Elements average value = %.3f",
                     arr.getElementsSum() / arr.getLength()));
-            outputArray(array.resetArrayPositiveElementsIfAverageInIntervalMoreThanAmount(lowIntervalLimit,
-                    highIntervalLimit), "Array after transformation: ");
+            outputStrings(array.resetArrayPositiveElementsIfAverageInIntervalMoreThanAmount(lowIntervalLimit,
+                    highIntervalLimit).toString(), "Array after transformation: ");
         }
     }
 }
