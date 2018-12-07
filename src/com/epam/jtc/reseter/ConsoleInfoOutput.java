@@ -3,35 +3,35 @@ package com.epam.jtc.reseter;
 public class ConsoleInfoOutput implements InfoOutput {
 
     @Override
-    public void outputArray(NumericOneDimArray array, String... extraInfo) {
-        for (String str : extraInfo) {
-            System.out.println(str);
-        }
+    public void outputArray(NumericOneDimArray array) {
+        System.out.println("----------------------");
+        System.out.println("Array : ");
         System.out.println(array);
+        System.out.println("----------------------");
     }
 
     @Override
-    public void outputStrings(String... stringsForOutput) {
-        for (String string : stringsForOutput)
-            System.out.println(string);
-    }
+    public void outputIntervalInfo(NumericOneDimArray array, double lowIntervalLimit,
+                                   double highIntervalLimit) {
+        NumericOneDimArray arrayInInterval = array.getArrayOfElements(lowIntervalLimit, highIntervalLimit);
 
-
-    @Override
-    public void outputArrayInfoAfterIntervalCheck(NumericOneDimArray array, double lowIntervalLimit,
-                                                  double highIntervalLimit) {
-        NumericOneDimArray arr = array.getArrayOfElementsInInterval(lowIntervalLimit, highIntervalLimit);
+        int arrayAmount = arrayInInterval.getLength();
 
         System.out.println("Amount of element belonging " +
                 "to a range from " + lowIntervalLimit + " to "
-                + highIntervalLimit + " = " + arr.getLength());
+                + highIntervalLimit + " = " + arrayAmount);
 
+        double arrayAverageValue;
 
-        if (arr.getLength() != 0) {
+        if (arrayAmount != 0) {
+            arrayAverageValue = arrayInInterval.getElementsSum() / arrayInInterval.getLength();
+
             System.out.println(String.format("Elements average value = %.3f",
-                    arr.getElementsSum() / arr.getLength()));
-            outputStrings(array.resetArrayPositiveElementsIfAverageInIntervalMoreThanAmount(lowIntervalLimit,
-                    highIntervalLimit).toString(), "Array after transformation: ");
+                    arrayAverageValue));
+
+            if (arrayAverageValue > arrayAmount) {
+                System.out.println("Positive elements need to be reseted");
+            }
         }
     }
 }

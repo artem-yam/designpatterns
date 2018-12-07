@@ -13,18 +13,13 @@ public class NumericOneDimArrayClass implements NumericOneDimArray {
     }
 
     @Override
-    public double[] getElements() {
-        return this.dimArray;
-    }
-
-    @Override
     public int getLength() {
         return this.dimArray.length;
     }
 
     @Override
-    public NumericOneDimArray resetArrayPositiveElementsIfAverageInIntervalMoreThanAmount(double lowIntervalLimit, double highIntervalLimit) {
-        NumericOneDimArray arrayOfElementsInInterval = getArrayOfElementsInInterval(lowIntervalLimit, highIntervalLimit);
+    public NumericOneDimArray changeArrayDependingOnIntervalElements(double lowIntervalLimit, double highIntervalLimit) {
+        NumericOneDimArray arrayOfElementsInInterval = getArrayOfElements(lowIntervalLimit, highIntervalLimit);
 
         if (isNeedToReset(arrayOfElementsInInterval)) {
             return getArrayWithNoPositiveElements();
@@ -34,7 +29,7 @@ public class NumericOneDimArrayClass implements NumericOneDimArray {
     }
 
     private boolean isNeedToReset(NumericOneDimArray elementsInInterval) {
-        int elementsAmount = elementsInInterval.getElements().length;
+        int elementsAmount = elementsInInterval.getLength();
         double elementsSum = elementsInInterval.getElementsSum();
 
         if ((elementsAmount != 0) && (elementsSum / elementsAmount > elementsAmount)) {
@@ -45,7 +40,7 @@ public class NumericOneDimArrayClass implements NumericOneDimArray {
     }
 
     @Override
-    public NumericOneDimArrayClass getArrayOfElementsInInterval(double lowIntervalLimit, double highIntervalLimit) {
+    public NumericOneDimArrayClass getArrayOfElements(double lowIntervalLimit, double highIntervalLimit) {
         List<Double> elementsInInterval = new ArrayList<>();
 
         for (int i = 0; i < this.dimArray.length; i++) {
