@@ -1,39 +1,28 @@
 package com.epam.jtc.reseter;
 
+import java.util.Collection;
+
 public class ConsoleInfoOutput implements InfoOutput {
 
+    private final static String CHECK_RESET = "Is need to reset: %b\n";
+    private final static String ARRAY_ELEMENTS = "Array:\n%s\n";
+    private final static String CHECKABLE_INTERVAL = "Interval to check:\n" +
+            "[ %s ; %s ]\n";
+
+
     @Override
-    public void outputArray(NumericOneDimArray array) {
-        System.out.println("----------------------");
-        System.out.println("Array : ");
-        System.out.println(array);
-        System.out.println("----------------------");
+    public void showCollection(Collection<Double> elements) {
+        System.out.printf(ARRAY_ELEMENTS, elements);
     }
 
     @Override
-    public void outputIntervalInfo(NumericOneDimArray array, double lowIntervalLimit,
-                                   double highIntervalLimit) {
-        outputArray(array);
-
-        NumericOneDimArray arrayInInterval = array.getArrayOfElements(lowIntervalLimit, highIntervalLimit);
-
-        int arrayAmount = arrayInInterval.getLength();
-
-        System.out.println("Amount of element belonging " +
-                "to a range from " + lowIntervalLimit + " to "
-                + highIntervalLimit + " = " + arrayAmount);
-
-        double arrayAverageValue;
-
-        if (arrayAmount != 0) {
-            arrayAverageValue = arrayInInterval.getElementsSum() / arrayInInterval.getLength();
-
-            System.out.println(String.format("Elements average value = %.3f",
-                    arrayAverageValue));
-
-            if (arrayAverageValue > arrayAmount) {
-                System.out.println("Positive elements need to be reseted");
-            }
-        }
+    public void showCheckableInterval(Double lowLimit, Double highLimit) {
+        System.out.printf(CHECKABLE_INTERVAL, lowLimit, highLimit);
     }
+
+    @Override
+    public void showCheckForReset(boolean checkResult) {
+        System.out.printf(CHECK_RESET, checkResult);
+    }
+
 }

@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>JTC</groupId>
+    <groupId>com.epam.jtc</groupId>
     <artifactId>reseter</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>reseter</name>
+    <name>Reseter</name>
 
     <dependencies>
         <dependency>
@@ -51,7 +51,6 @@
                         <archive>
                             <manifest>
                                 <addClasspath>true</addClasspath>
-                                <classpathPrefix>lib/</classpathPrefix>
                                 <mainClass>com.epam.jtc.reseter.ArrayReseter</mainClass>
                             </manifest>
                         </archive>

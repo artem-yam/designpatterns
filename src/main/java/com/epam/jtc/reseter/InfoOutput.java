@@ -1,8 +1,12 @@
 package com.epam.jtc.reseter;
 
+import java.util.Collection;
+
 public interface InfoOutput {
 
-    void outputArray(NumericOneDimArray array);
+    void showCollection(Collection<Double> elements);
 
-    void outputIntervalInfo(NumericOneDimArray array, double lowLimit, double highLimit);
+    void showCheckableInterval(Double lowLimit, Double highLimit);
+
+    void showCheckForReset(boolean checkResult);
 }

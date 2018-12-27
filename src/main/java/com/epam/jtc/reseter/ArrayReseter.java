@@ -1,12 +1,21 @@
 package com.epam.jtc.reseter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
- * Подсчитать количество элементов, значения которых лежат в диапазоне от
- * lowLimit до highLimit. Если среднее арифметическое значений элементов, которые
- * лежат в этом диапазоне, превышает количество таких элементов, то обнулить
- * элементы с положительными значениями.
+ * Count array elements values in some interval.
+ * If average value of such elements more than their amount,
+ * set to zero all positive elements in origin array
  */
 public class ArrayReseter {
+
+    private static final double LOW_LIMIT = 1.0;
+    private static final double HIGH_LIMIT = 12.0;
+    private static final List<Double> LIST_TO_CHECK =
+            new ArrayList<>(Arrays.asList(3.0, 1.0, -8.0, 20.0, 25.0));
+
 
     private InfoOutput infoOutput = new ConsoleInfoOutput();
 
@@ -14,18 +23,24 @@ public class ArrayReseter {
 
         ArrayReseter reseter = new ArrayReseter();
 
-        reseter.handleArray(new NumericOneDimArrayClass(-50, 0, 3, 1, -8, 10, 25), 1, 12);
+        ResettableCollection listForReset =
+                new ResettableList(LOW_LIMIT, HIGH_LIMIT, LIST_TO_CHECK);
+
+        reseter.handleArray(listForReset);
     }
 
 
-    private void handleArray(NumericOneDimArray arrayObject, double lowLimit, double highLimit) {
+    public void handleArray(ResettableCollection collection) {
 
-        infoOutput.outputIntervalInfo(arrayObject, lowLimit, highLimit);
+        infoOutput.showCollection(collection.getElements());
+        infoOutput.showCheckableInterval(collection.getLowLimit(),
+                collection.getHighLimit());
+        infoOutput.showCheckForReset(collection.isNeedToReset());
 
-        NumericOneDimArray resetedArray = arrayObject.
-                changeArrayDependingOnIntervalElements(lowLimit, highLimit);
+        ResettableCollection resetedCollection =
+                collection.resetPositiveElements();
 
-        infoOutput.outputArray(resetedArray);
+        infoOutput.showCollection(resetedCollection.getElements());
     }
 
 }
